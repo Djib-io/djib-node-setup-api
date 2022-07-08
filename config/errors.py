@@ -24,3 +24,8 @@ class ErrorMessages:
         "message": "Server Error",
         "data": "Reserved for implementation-defined server-errors."
     }
+    AuthenticationError = {
+        "status": -1,
+        "message": "Authorization required!",
+        "data": None
+    }
