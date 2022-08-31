@@ -9,9 +9,7 @@ from flask import Flask, has_request_context, request
 from flask_cors import CORS
 
 import config.errors
-import libs.helper
 from controller.ctrl import api
-import threading
 
 
 class RequestFormatter(logging.Formatter):
@@ -78,5 +76,4 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     app.logger.handlers.clear()
     app.logger.addHandler(handler)
-    threading.Thread(target=libs.helper.metric_jobs, ).start()
     app.run(host=app.config.get('HOST'), port=app.config.get('PORT'), use_reloader=False)

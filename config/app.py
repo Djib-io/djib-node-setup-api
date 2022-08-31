@@ -14,6 +14,8 @@ try:
     PORT = int(environ.get("FLASK_PORT"))
     SECRET = environ.get("FLASK_SECRET")
 
+    TELEMETRY_ENDPOINT = environ.get("TELEMETRY_ENDPOINT")
+
     PROPAGATE_EXCEPTIONS = False
     DEBUG = True
 
@@ -23,6 +25,8 @@ try:
     else:
         TESTING = True
         ENV = 'development'
+
+    DATA_DIR = path.join(BASEDIR, "data")
 
 except Exception as e:
     print(f"Error on reading global config: {str(e)}")

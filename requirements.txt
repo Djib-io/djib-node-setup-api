@@ -3,6 +3,5 @@ flask
 flask-cors
 requests
 psutil
-base58
-solana
-PyNaCl
+jsonrpcserver
+schedule
