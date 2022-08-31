@@ -182,7 +182,8 @@ def check_setup():
         "registered": False,
         "password": False,
         "staked": False,
-        "info": None
+        "info": None,
+        "ip": requests.get('https://api.ipify.org').text
     }
     if (token := get_token()) is None:
         return res
