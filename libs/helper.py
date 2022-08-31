@@ -118,13 +118,18 @@ def get_password():
         file = open(f"{DATA_DIR}/_pass.json", "r")
         data = json.loads(file.read())
         file.close()
-        return data['password']
+        if 'username' not in data or 'password' not  in data:
+            return None
+        return data
     except:
         return None
 
 
-def check_password(password: str):
-    return get_password() == password
+def check_password(password: str, username: str):
+    cred = get_password()
+    if cred is None:
+        return False
+    return cred['username'] == username, password == cred['password']
 
 
 def password_strong(password: str):
@@ -139,6 +144,16 @@ def password_strong(password: str):
         return False, "Password must contain upper case ascii!"
     if not lwasci:
         return False, "Password must contain digits!"
+    return True, None
+
+
+def username_strong(username: str):
+    if len(username) < 4:
+        return False, "Username length must bigger than 3!"
+    valids = [i for i in string.ascii_letters]
+    for i in username:
+        if i == ' ' or i =='' or i not in valids:
+            return False, "Invalid character in username!"
     return True, None
 
 

@@ -21,13 +21,14 @@ def metrics():
 
 
 @api.route("/login", methods=["POST"])
-@expects({"password"})
-def login(password: str):
+@expects({"username", "password"})
+def login(username: str, password: str):
     """ login
+        @param username: str
         @param password: str
     """
     log_api_call(login.__name__)
-    if not check_password(password):
+    if not check_password(password, username):
         return error_401()
     data = get_config()
     data, error = call_rpc([data['username'], data['password']], "auth")
@@ -143,20 +144,24 @@ def claim_rewards(token: str):
 
 
 @api.route("/info/set-password", methods=["POST"])
-@expects({"token", "password"})
-def set_password(token: str, password: str):
+@expects({"token", "password", "username"})
+def set_password(token: str, username: str, password: str):
     """ set password
         @param token: str
+        @param username: str
         @param password: str
         @return: dict
     """
     log_api_call(set_password.__name__)
     if not check_token(token):
         return error_401()
+    err, msg = username_strong(username)
+    if not err:
+        return {"message": msg, "status": -1, "data": msg}, 400
     err, msg = password_strong(password)
     if not err:
         return {"message": msg, "status": -1, "data": msg}, 400
-    save_password({"password": password})
+    save_password({"password": password, "username": username})
     return response_success(data="Success")
 
 
