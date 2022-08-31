@@ -8,6 +8,7 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 
 
-## [0.1.0] - 2022-07-09
+## [0.1.0] - 2022-08-31
 ### Added
 - Initial project structure
+- Add first version apis
