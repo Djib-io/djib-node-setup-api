@@ -3,5 +3,5 @@ flask
 flask-cors
 requests
 psutil
-jsonrpcserver
+jsonrpcclient
 schedule
