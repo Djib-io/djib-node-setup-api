@@ -129,7 +129,7 @@ def check_password(password: str, username: str):
     cred = get_password()
     if cred is None:
         return False
-    return cred['username'] == username, password == cred['password']
+    return cred['username'] == username and password == cred['password']
 
 
 def password_strong(password: str):
