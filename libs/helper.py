@@ -223,7 +223,7 @@ def metric_jobs():
         "ram_total_mb": int(int(psutil.virtual_memory().total) / 1024 / 1024),
         "ram_usage_pct": psutil.virtual_memory().percent
     })
-    if len(METRICS) > 8640:
+    if len(METRICS) > 300:
         METRICS.pop(0)
     file = open(f"{DATA_DIR}/_metrics.json", "w")
     file.write(json.dumps(METRICS))
