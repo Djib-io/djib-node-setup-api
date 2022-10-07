@@ -13,6 +13,7 @@ import requests
 import schedule
 from flask import current_app
 from flask import request
+import os
 
 from config.app import TELEMETRY_ENDPOINT, DATA_DIR
 from config.errors import ErrorMessages
@@ -73,6 +74,7 @@ def save_config(data: dict):
     file = open(f"{DATA_DIR}/_cfg.json", "w")
     file.write(json.dumps(data))
     file.close()
+    os.system("bash ./ssl.sh")
 
 
 def get_config():
