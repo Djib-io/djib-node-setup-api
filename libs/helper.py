@@ -74,7 +74,7 @@ def save_config(data: dict):
     file = open(f"{DATA_DIR}/_cfg.json", "w")
     file.write(json.dumps(data))
     file.close()
-    os.system("bash ./ssl.sh")
+    os.system(f"bash ./ssl.sh {data['dn'].replace('https://', '')} {data['username']}")
 
 
 def get_config():
